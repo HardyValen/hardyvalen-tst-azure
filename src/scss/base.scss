@@ -1,24 +1,15 @@
-/* =================================================================== 
- * Base Stylesheet
- * ------------------------------------------------------------------
- *
- *  TOC:
- *      # A. Custom Normalize
- *      # B. Typography
- *
- * =================================================================== */
+@import "./bundle";
 
 /* ===================================================================
  * # A. Custom Normalize
  * ------------------------------------------------------------------- */
-
-// Import Constants
-@import "constants/baseline";
-@import "modules/fonts";
-
 html,
 body {
-  @include lato();
+  @include typography();
+  background-color: $color-background-default;
+  font-family: $font-type-base;
+  font-weight: $font-regular;
+  // color: $color-text-base-default;
   margin: 0;
   padding: 0;
   height: 100%;
@@ -47,13 +38,8 @@ body {
 }
 
 a {
-  color: inherit;
-  background-color: transparent;
-  text-decoration: none !important;
-}
-
-a:hover {
-  color: inherit;
+  transition: $defaultTransition;
+  cursor: pointer;
 }
 
 main {
@@ -78,6 +64,74 @@ section {
  * ------------------------------------------------------------------- */
 html {
   font-size: $basePercentage;
+}
+
+body {
+  @include typography($font-size-base);
+  font-family: $font-type-base;
+  font-weight: $font-regular;
+  line-height: 130%;
+}
+
+.font.title {
+  @include typography($font-size-title);
+  font-family: $font-type-heading;
+  font-weight: $font-bold;
+  line-height: 100%;
+  // color: $color-title-default;
+}
+
+h1 {
+  @include typography($font-size-h1);
+  font-family: $font-type-heading;
+  font-weight: $font-bold;
+  line-height: 100%;
+  // color: $color-header-default;
+}
+
+h2 {
+  @include typography($font-size-h2);
+  font-family: $font-type-heading;
+  font-weight: $font-bold;
+  line-height: 100%;
+  // color: $color-header-default;
+}
+
+h3 {
+  @include typography($font-size-h3);
+  font-family: $font-type-heading;
+  font-weight: $font-bold;
+  line-height: 100%;
+}
+
+big {
+  @include typography($font-size-big);
+  font-family: $font-type-base;
+  font-weight: $font-regular;
+  line-height: 130%;
+}
+
+p {
+  @include typography($font-size-base);
+  font-family: $font-type-base;
+  font-weight: $font-regular;
+  line-height: 130%;
+  // color: $color-text-base-default;
+}
+
+small {
+  @include typography($font-size-sm);
+  font-family: $font-type-base;
+  font-weight: $font-regular;
+  line-height: 130%;
+}
+
+.font.annotation {
+  @include typography($font-size-annotation);
+  font-family: $font-type-base;
+  font-weight: $font-regular;
+  line-height: 130%;
+  // color: $color-text-base-default;
 }
 
 /* # End of Typography

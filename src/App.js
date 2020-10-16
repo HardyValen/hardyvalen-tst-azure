@@ -1,24 +1,60 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Axios from 'axios';
+import React, { useEffect, useState } from 'react';
+
+// import logo from './logo.svg';
+// import './App.css';
 
 function App() {
+  // const [data, setData] = useState([{}]);
+  const [data, setData] = useState([{
+    "post-id": 1,
+    "post-title": "Titleee",
+    "post-author": "Authorrr",
+    "post-body": "Bodyyy",
+    "post-created-at": Date.now()
+  }]);
+  
+  useEffect(() => {
+    Axios
+      .get("http://localhost:9000/post/get-all")
+      .then(res => {
+        setData(res.data);
+        return null;
+      })
+      .catch((e) => {
+        console.log(e);
+      })
+  }, []);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Hello World
-        </a>
-      </header>
+      Get data from Azure Database
+      <table>
+        <thead>
+          <tr>
+            <td>ID</td>
+            <td>Title</td>
+            <td>Author</td>
+            <td>Body</td>
+            <td>Created At</td>
+          </tr>
+        </thead>
+        <tbody>
+        {
+          data.map((data, key) => {
+            return (
+              <tr key={key}>
+                <td>{data["post-id"]}</td>
+                <td>{data["post-title"]}</td>
+                <td>{data["post-author"]}</td>
+                <td>{data["post-body"]}</td>
+                <td>{data["post-created-at"]}</td>
+              </tr>
+            )
+          }
+        )}
+        </tbody>
+      </table>
     </div>
   );
 }

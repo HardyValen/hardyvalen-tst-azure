@@ -1,23 +1,33 @@
 // Constant: Box-Sizing
-
-// Navigation Constants
-$bs-nav-paddingFloor: 1.2rem;
-$bs-nav-imgFloor: 4.8rem;
-$bs-nav-heightFloor: ($bs-nav-paddingFloor * 2) + $bs-nav-imgFloor;
-
-$bs-nav-paddingCeil: 1.2rem;
-$bs-nav-imgCeil: 7.2rem;
-$bs-nav-heightCeil: ($bs-nav-paddingCeil * 2) + $bs-nav-imgCeil;
-
 // Scene Constants
 $bs-scene-floor: 3rem;
 $bs-scene-ceil: 5rem;
 
 // Minimal Component Constants
 $bs-component-default: 2rem; // Floor and Ceiling is 2rem.
+$bs-component-default-list: $bs-component-default, $bs-component-default;
 
 // Button Constants
-$bs-button-x-floor: 1rem;
-$bs-button-x-ceil: 2.2rem;
-$bs-button-y-floor: 0.75rem;
-$bs-button-y-ceil: 1.25rem;
+$bs-button-x-floor: 1.0rem;
+$bs-button-y-floor: 1.0rem;
+$bs-button-x-ceil: 2.25rem;
+$bs-button-y-ceil: 1.5rem;
+
+
+// Margin Differentiation
+$margin-count: 5;
+
+// Padding Differentiation
+$padding-count: 5;
+
+// Box Sizing Variable List
+$bs: (
+  "1": (0.5rem, 0.5rem), 
+  "2": (0.66rem, 0.75rem), 
+  "3": (0.75rem, 1rem), 
+  "4": (1rem, 1.5rem), 
+  "5": (1.5rem, 2rem),
+  "6": (2rem, 3rem),
+  "7": (3.5rem, 5rem),
+  "8": (5rem, 8rem)
+);

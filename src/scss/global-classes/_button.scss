@@ -1,0 +1,14 @@
+@mixin button() {
+  @include fluidpaddingx(1rem, 1.75rem);
+  @include fluidpaddingy(.75rem, 1.25rem);
+  @include fluid(border-width, .1rem);
+  border-style: solid;
+}
+
+.button {
+  @include button();
+  cursor: pointer;
+  display: inline-block;
+  transition: $defaultTransition;
+  text-decoration: none;
+}
