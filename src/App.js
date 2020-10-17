@@ -16,13 +16,15 @@ function App() {
   
   useEffect(() => {
     Axios
-      .get("http://localhost:9000/post/get-all")
+      .get(
+        "http://hardyvalen-backend.azurewebsites.net/post/get-all", 
+      )
       .then(res => {
         setData(res.data);
         return null;
       })
       .catch((e) => {
-        console.log(e);
+        console.log(JSON.stringify(e, null, 4));
       })
   }, []);
 
