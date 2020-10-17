@@ -17,7 +17,7 @@ function App() {
   useEffect(() => {
     Axios
       .get(
-        "http://hardyvalen-backend.azurewebsites.net/post/get-all", 
+        "https://hardyvalen-backend.azurewebsites.net/post/get-all", 
       )
       .then(res => {
         setData(res.data);
