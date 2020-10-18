@@ -1,10 +1,9 @@
 import React from 'react';
-import { useEffect } from 'react';
 import TextareaAutosize from 'react-autosize-textarea/lib';
 import { Link } from 'react-router-dom';
 import FrontendRoutes from '../routes/FrontendRoutes';
 
-const BodyContentUpdate = ({postBody, setPostBody, updatePostData}) => {
+const BodyContentUpdate = ({postBody, setPostBody, updatePostData, lock}) => {
 
   return (
     <div className="row">
@@ -13,7 +12,6 @@ const BodyContentUpdate = ({postBody, setPostBody, updatePostData}) => {
           placeholder="Waiting for the post content..."
           onChange={(e) => {setPostBody(e.target.value)}}
           value={postBody}
-          required
         />
       </div>
       <div className="col-md-4 p-3 medium-only bodyActionsEditable">
@@ -26,6 +24,7 @@ const BodyContentUpdate = ({postBody, setPostBody, updatePostData}) => {
         <button 
           className="color white primary-bg py-3 px-5 primary-2-bg-hover"
           onClick={(e) => {updatePostData(e)}}
+          disabled={lock}
         >
           Save Changes
         </button>

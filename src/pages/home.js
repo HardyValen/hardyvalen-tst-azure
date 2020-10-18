@@ -1,17 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import SidebarDefaultDesktop from '../components/__sidebar-default-desktop';
-import Axios from 'axios';
 import moment from 'moment';
 import _ from "lodash";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
 import FrontendRoutes from '../routes/FrontendRoutes';
-import BackendRoutes from '../routes/BackendRoutes';
 import HeaderContentHome from '../components/__header-content-home';
 import DeletePostFunction from '../functions/_deletePost';
 import GetAllPostFunction from '../functions/_getAllPosts';
 import FooterContentHome from '../components/__footer-content-home';
 import SlidebarContentHome from '../components/__slidebar-content-home';
+
+import { toast } from 'react-toastify';
+import ErrorNoPosts from '../components/__error-no-posts';
 
 const HomePage = ({pageSetter, width, navState, setNavState}) => {
   const [searchString, setSearchString] = useState('');
@@ -30,6 +31,7 @@ const HomePage = ({pageSetter, width, navState, setNavState}) => {
 
     return (
       <div className="postsFeedContainer row">
+        {filteredPosts.length < 1 ? <ErrorNoPosts/> : null}
         {filteredPosts.slice().sort((a, b) => new Date(b.post_created_at) - new Date(a.post_created_at)).map((data, index) => {
           return (
             <div className="col-12 col-md-4 p-3" key={index}>
@@ -55,7 +57,7 @@ const HomePage = ({pageSetter, width, navState, setNavState}) => {
                 <div className="postFeedFooter">
                   <a className="icons" onClick={
                     () => {
-                      DeletePostFunction(data.post_id)
+                      DeletePostFunction(data.post_id, {post_title: data.post_title, post_author: data.post_author})
                       .then(() => {
                         setRefreshFlag(!refreshFlag);
                       })
@@ -88,10 +90,9 @@ const HomePage = ({pageSetter, width, navState, setNavState}) => {
 
   useEffect(() => {
     GetAllPostFunction()
-      .then(data => {
-        setPosts(data);
-      })
-      .catch(err => JSON.stringify(err, null, 2))
+    .then(data => {
+      setPosts(data);
+    })
   }, [refreshFlag]);
 
   return null;

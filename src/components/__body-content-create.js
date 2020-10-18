@@ -3,7 +3,7 @@ import TextareaAutosize from 'react-autosize-textarea/lib';
 import { Link } from 'react-router-dom';
 import FrontendRoutes from '../routes/FrontendRoutes';
 
-const BodyContentCreate = ({setPostContent, publishPostData}) => {
+const BodyContentCreate = ({setPostContent, publishPostData, lock}) => {
 
   return (
     <div className="row">
@@ -24,6 +24,7 @@ const BodyContentCreate = ({setPostContent, publishPostData}) => {
         <button 
           className="color white primary-bg py-3 px-5 primary-2-bg-hover"
           onClick={(e) => {publishPostData(e)}}
+          disabled={lock}
         >
           Publish Post
         </button>

@@ -11,23 +11,34 @@
     @include fluid(height, 4.6rem);
     @include box-shadow("button");
     border-radius: 50%;
-    background-color: #fbfbfb;
-    color: map-get($color, "primary");
     transition: $defaultTransition;
-
+    
     display: flex;
     justify-content: center;
     align-items: center;
-
+    
+    background-color: #fbfbfb;
+    color: map-get($color, "primary");
+    
     &:hover {
       color: map-get($color, "primary-2");
       background-color: map-get($color, "primary-light");
     }
 
+    &.mainButton {
+      color: #fbfbfb;
+      background-color: map-get($color, "primary");
+      
+      &:hover {
+        // color: map-get($color, "primary-light");
+        background-color: map-get($color, "primary-2");
+      }
+    }
+
     @include fluidmarginx(1rem, 1.5rem);
   }
 
-  button, .button {
+  button {
     @include typography($font-size-base);
     font-family: $font-type-base;
     border: none;

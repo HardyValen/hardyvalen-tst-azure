@@ -16,11 +16,11 @@ const FooterContentView = ({navState, setNavState, data}) => {
       <div className="footerIcon" onClick={navOnClick}>
         <FontAwesomeIcon icon={['fas', 'bars']} size={"lg"}/>
       </div>
-      <Link 
-        to={FrontendRoutes.updatePost + postID} 
-        className="color white primary-bg py-3 px-5 primary-2-bg-hover button"
-      >
-        Update This Post
+      <Link className="footerIcon mainButton" to={FrontendRoutes.updatePost + postID} >
+        <FontAwesomeIcon icon={['fas', 'pen']} size={"lg"}/>
+      </Link>
+      <Link className="footerIcon" to={FrontendRoutes.home}>
+        <FontAwesomeIcon icon={['fas', 'home']} size={"lg"}/>
       </Link>
     </div>
   )

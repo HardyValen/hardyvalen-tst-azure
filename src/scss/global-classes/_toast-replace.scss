@@ -1,0 +1,19 @@
+.Toastify__toast-container {
+  @include bp-min-width($bp-medium) {
+    @include fluid(width, 32rem);
+  }
+}
+
+.toastReplaceContainer {
+  @include fluid(height, 6rem, 8rem);
+  @include fluid(padding-top, 1rem);
+  @include fluid(padding-right, 1rem);
+}
+
+.toastReplaceBody {
+  @include boxsizing();
+}
+
+.toastReplaceProgress {
+  @include fluid(height, .5rem);
+}
