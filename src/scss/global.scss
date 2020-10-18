@@ -12,6 +12,7 @@
 @import "./global-classes/layout";
 @import "./global-classes/separator";
 @import "./global-classes/button";
+@import "./global-classes/toast-replace";
 
 @import "./component/layout";
 @import "./component/layout-sidebar";
@@ -28,3 +29,4 @@
 @import "./component/_body-viewable";
 @import "./component/_footer-content";
 @import "./component/_slidebar-content";
+@import "./component/_error-no-posts";

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Redirect, useParams } from 'react-router-dom';
 import BodyContentUpdate from '../components/__body-content-update';
 import HeaderContentUpdate from '../components/__header-content-update';
 import FooterContentUpdate from '../components/__footer-content-update';
@@ -7,16 +7,21 @@ import SlidebarContentUpdate from '../components/__slidebar-content-update';
 import SidebarDefaultDesktop from '../components/__sidebar-default-desktop';
 import GetPostByIDFunction from '../functions/_getPostByID';
 import UpdatePostFunction from '../functions/_updatePost';
+import FrontendRoutes from '../routes/FrontendRoutes';
 
-const EditPostPage = ({pageSetter, width, navState, setNavState}) => {
+const EditPostPage = ({pageSetter, navState, setNavState}) => {
   let {id} = useParams();
   const [postID, setPostID] = useState(id);
   const [postTitle, setPostTitle] = useState('');
   const [postAuthor, setPostAuthor] = useState('');
   const [postBody, setPostBody] = useState('');
   const [postDate, setPostDate] = useState('');
+  const [lock, setLock] = useState(false);
+  const [jobFinished, setJobFinished] = useState(false);
 
   const updatePostData = (e) => {
+    setLock(true);
+
     e.preventDefault();
     let data = {
       id: postID,
@@ -27,18 +32,16 @@ const EditPostPage = ({pageSetter, width, navState, setNavState}) => {
 
     UpdatePostFunction(data)
       .then(
-        () => {
-          // To Do
-        }
-      )
-      .catch(
-        () => {
-          // To Do
+        (state) => {
+          setLock(false)
+          if (state) { setJobFinished(true) }
         }
       )
   }
 
   useEffect(() => {
+    setLock(true);
+
     GetPostByIDFunction(id)
       .then(
         (data) => {
@@ -49,11 +52,8 @@ const EditPostPage = ({pageSetter, width, navState, setNavState}) => {
           setPostAuthor(post_author);
           setPostBody(post_body);
           setPostDate(post_created_at);
-        }
-      )
-      .catch(
-        (status) => {
-          // To Do
+
+          setLock(false);
         }
       )
   }, [])
@@ -75,13 +75,14 @@ const EditPostPage = ({pageSetter, width, navState, setNavState}) => {
           postBody={postBody} 
           setPostBody={setPostBody} 
           updatePostData={updatePostData}
+          lock={lock}
         />
       },
-      "bodyFooter": () => {return <FooterContentUpdate navState={navState} setNavState={setNavState} data={{postID}} updatePostData={updatePostData}/>},
+      "bodyFooter": () => {return <FooterContentUpdate navState={navState} setNavState={setNavState} data={{postID}} updatePostData={updatePostData} lock={lock}/>},
     });
-  }, [postTitle, postAuthor, postBody, navState])
+  }, [postTitle, postAuthor, postBody, navState, lock])
   
-  return null;
+  return (jobFinished ? <Redirect push to={FrontendRoutes.home}/> : null);
 }
 
 export default EditPostPage

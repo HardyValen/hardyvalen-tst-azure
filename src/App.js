@@ -8,6 +8,9 @@ import HomePage from './pages/home';
 import ViewPostPage from './pages/view-post';
 import FrontendRoutes from './routes/FrontendRoutes';
 import * as Helpers from './functions/functions-common';
+import { ToastContainer, Slide } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 function App() {
   const [pageData, setPageData] = useState({
@@ -54,6 +57,19 @@ function App() {
             <Redirect to={FrontendRoutes.home}/>
           </Route>
         </Switch>
+
+        <ToastContainer
+          position="bottom-right"
+          autoClose={3000}
+          hideProgressBar={false}
+          newestOnTop
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          transition={Slide}
+          closeButton={<FontAwesomeIcon icon={['fas', "times"]} size="lg"/>}
+        />
       </BrowserRouter>
     </div>
   );

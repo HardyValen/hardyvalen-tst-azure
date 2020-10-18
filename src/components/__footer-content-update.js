@@ -3,9 +3,9 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import FrontendRoutes from '../routes/FrontendRoutes';
 
-const FooterContentUpdate = ({navState, setNavState, data, updatePostData}) => {
+const FooterContentUpdate = ({navState, setNavState, data, updatePostData, lock}) => {
   
-  const { postID } = data;
+  // const { postID } = data;
 
   const navOnClick = () => {
     setNavState(!navState);
@@ -16,12 +16,17 @@ const FooterContentUpdate = ({navState, setNavState, data, updatePostData}) => {
       <div className="footerIcon" onClick={navOnClick}>
         <FontAwesomeIcon icon={['fas', 'bars']} size={"lg"}/>
       </div>
-      <button
-        className="color white primary-bg py-3 px-5 primary-2-bg-hover"
+      <button 
+        className="footerIcon mainButton" 
+        to={FrontendRoutes.home}
         onClick={updatePostData}
+        disabled={lock}
       >
-        Save Changes
+        <FontAwesomeIcon icon={['fas', 'save']} size={"lg"}/>
       </button>
+      <Link className="footerIcon" to={FrontendRoutes.home}>
+        <FontAwesomeIcon icon={['fas', 'home']} size={"lg"}/>
+      </Link>
     </div>
   )
 }
