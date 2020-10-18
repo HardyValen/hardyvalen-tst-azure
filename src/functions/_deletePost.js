@@ -1,3 +1,4 @@
+import React from 'react';
 const { default: Axios } = require("axios");
 const { default: BackendRoutes } = require("../routes/BackendRoutes");
 
@@ -17,4 +18,4 @@ const DeletePostFunction = async (id) => {
   );
 }
 
-module.exports = DeletePostFunction;
+export default DeletePostFunction;
