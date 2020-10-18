@@ -11,18 +11,20 @@ const HeaderContentHome = ({width, search}) => {
   return (
     <div className="headerContent">
       <h1>Posts</h1>
-      {
-        width >= Breakpoints.md
-        ? <div className="headerOptions mt-3">
-            <input type="text" placeholder="Search" onChange={searchListener} className="input-post-search"/>
-            <Link to={FrontendRoutes.createPost}>
-              <span className="button-transparent color primary-light-bg-hover">
-                Create Post
-              </span>
-            </Link>
-          </div>
-        : null
-      }
+      <div className="headerOptions mt-3">
+        <input type="text" placeholder="Search" onChange={searchListener} className="input-post-search"/>
+        {
+          width >= Breakpoints.md
+          ? 
+          <Link to={FrontendRoutes.createPost}>
+            <span className="button-transparent color primary-light-bg-hover">
+              Create Post
+            </span>
+          </Link>
+          : null
+        }
+      </div>
+      
     </div>
   )
 }

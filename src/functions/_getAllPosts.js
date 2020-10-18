@@ -1,5 +1,3 @@
-import React from 'react';
-
 const { default: Axios } = require("axios");
 const { default: BackendRoutes } = require("../routes/BackendRoutes");
 
@@ -10,7 +8,7 @@ const GetAllPostFunction = async () => {
     })
     .catch((e) => {
       console.log(JSON.stringify(e, null, 4));
-      return false;
+      return [];
     })
 }
 

@@ -10,8 +10,10 @@ import BackendRoutes from '../routes/BackendRoutes';
 import HeaderContentHome from '../components/__header-content-home';
 import DeletePostFunction from '../functions/_deletePost';
 import GetAllPostFunction from '../functions/_getAllPosts';
+import FooterContentHome from '../components/__footer-content-home';
+import SlidebarContentHome from '../components/__slidebar-content-home';
 
-const HomePage = ({pageSetter, width}) => {
+const HomePage = ({pageSetter, width, navState, setNavState}) => {
   const [searchString, setSearchString] = useState('');
   const [posts, setPosts] = useState([]);
   const [refreshFlag, setRefreshFlag] = useState(true);
@@ -19,13 +21,16 @@ const HomePage = ({pageSetter, width}) => {
   const PageBody = () => {
     let filteredPosts = posts?.filter(
       (data) => {
-        return data?.post_title?.toUpperCase().indexOf(searchString?.toUpperCase()) > -1 || data?.post_author?.toUpperCase().indexOf(searchString?.toUpperCase()) > -1
+        return (
+          data?.post_title?.toUpperCase().indexOf(searchString?.toUpperCase()) > -1 || 
+          data?.post_author?.toUpperCase().indexOf(searchString?.toUpperCase()) > -1
+        )
       }
     );
 
     return (
       <div className="postsFeedContainer row">
-        {filteredPosts.map((data, index) => {
+        {filteredPosts.slice().sort((a, b) => new Date(b.post_created_at) - new Date(a.post_created_at)).map((data, index) => {
           return (
             <div className="col-12 col-md-4 p-3" key={index}>
               <div className="postFeed">
@@ -37,7 +42,7 @@ const HomePage = ({pageSetter, width}) => {
                         <p className="font annotation color gray-3">Author: {data.post_author}</p>
                       </div>
                       <div className="col-12">
-                        <p className="font annotation color gray-3">Posted {moment(data.post_created_at).fromNow()}</p>
+                        <p className="font annotation color gray-3">Updated {moment(data.post_created_at).fromNow()}</p>
                       </div>
                     </div>
                     <div className="row mt-2">
@@ -74,12 +79,12 @@ const HomePage = ({pageSetter, width}) => {
   useEffect(() => {
     pageSetter({
       "sidebar": () => {return <SidebarDefaultDesktop/>},
-      "slidingSidebar": () => {return "SlidingSidebar"},
+      "slidingSidebar": () => {return <SlidebarContentHome navState={navState} setNavState={setNavState}/>},
       "bodyHeader": () => {return <HeaderContentHome width={width} search={setSearchString}/>},
       "bodyContent": () => {return <PageBody/>},
-      "bodyFooter": () => {return "BodyFooter"},
+      "bodyFooter": () => {return <FooterContentHome navState={navState} setNavState={setNavState}/>},
     });
-  }, [width, searchString, posts])
+  }, [width, searchString, posts, navState])
 
   useEffect(() => {
     GetAllPostFunction()

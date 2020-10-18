@@ -2,11 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import BodyContentUpdate from '../components/__body-content-update';
 import HeaderContentUpdate from '../components/__header-content-update';
+import FooterContentUpdate from '../components/__footer-content-update';
+import SlidebarContentUpdate from '../components/__slidebar-content-update';
 import SidebarDefaultDesktop from '../components/__sidebar-default-desktop';
-import Axios from 'axios';
-import BackendRoutes from '../routes/BackendRoutes';
+import GetPostByIDFunction from '../functions/_getPostByID';
+import UpdatePostFunction from '../functions/_updatePost';
 
-const EditPostPage = ({pageSetter, width}) => {
+const EditPostPage = ({pageSetter, width, navState, setNavState}) => {
   let {id} = useParams();
   const [postID, setPostID] = useState(id);
   const [postTitle, setPostTitle] = useState('');
@@ -23,36 +25,43 @@ const EditPostPage = ({pageSetter, width}) => {
       author: postAuthor,
     }
 
-    Axios.post(
-      BackendRoutes.post.update,
-      data
-    ).then(res => {
-      console.log(JSON.stringify(res))
-    }).catch(error => {
-      console.log(JSON.stringify(error))
-    })
+    UpdatePostFunction(data)
+      .then(
+        () => {
+          // To Do
+        }
+      )
+      .catch(
+        () => {
+          // To Do
+        }
+      )
   }
 
   useEffect(() => {
-    Axios.get(BackendRoutes.post.getByID + id)
-      .then((res) => {
-        let {post_id, post_title, post_body, post_author, post_created_at} = res.data;
+    GetPostByIDFunction(id)
+      .then(
+        (data) => {
+          let {post_id, post_title, post_body, post_author, post_created_at} = data;
 
-        setPostID(post_id);
-        setPostTitle(post_title);
-        setPostAuthor(post_author);
-        setPostBody(post_body);
-        setPostDate(post_created_at);
-      })
-      .catch((err) => {
-        console.log(JSON.stringify(err, null, 2));
-      });
+          setPostID(post_id);
+          setPostTitle(post_title);
+          setPostAuthor(post_author);
+          setPostBody(post_body);
+          setPostDate(post_created_at);
+        }
+      )
+      .catch(
+        (status) => {
+          // To Do
+        }
+      )
   }, [])
 
   useEffect(() => {
     pageSetter({
       "sidebar": () => {return <SidebarDefaultDesktop/>},
-      "slidingSidebar": () => {return ""},
+      "slidingSidebar": () => {return <SlidebarContentUpdate navState={navState} setNavState={setNavState}/>},
       "bodyHeader": () => {
         return <HeaderContentUpdate
           postAuthor={postAuthor}
@@ -68,9 +77,9 @@ const EditPostPage = ({pageSetter, width}) => {
           updatePostData={updatePostData}
         />
       },
-      "bodyFooter": () => {return "BodyFooter"},
+      "bodyFooter": () => {return <FooterContentUpdate navState={navState} setNavState={setNavState} data={{postID}} updatePostData={updatePostData}/>},
     });
-  }, [postTitle, postAuthor, postBody])
+  }, [postTitle, postAuthor, postBody, navState])
   
   return null;
 }

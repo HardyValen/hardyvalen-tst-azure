@@ -2,8 +2,10 @@
   position: fixed;
   z-index: 2000;
   left: -100vw;
+  transition: $defaultTransition;
   
   background-color: map-get($color, "primary");
+  color: map-get($color, "white");
   width: 100vw;
   height: 100vh;
   

@@ -11,15 +11,16 @@ import * as Helpers from './functions/functions-common';
 
 function App() {
   const [pageData, setPageData] = useState({
-    "sidebar": () => {return "Sidebar"},
-    "slidingSidebar": () => {return "SlidingSidebar"},
-    "bodyHeader": () => {return "BodyHeader"},
-    "bodyContent": () => {return "BodyContent"},
-    "bodyFooter": () => {return "BodyFooter"},
+    "sidebar": () => {return ""},
+    "slidingSidebar": () => {return ""},
+    "bodyHeader": () => {return ""},
+    "bodyContent": () => {return ""},
+    "bodyFooter": () => {return ""},
   })
 
   const [width, setWidth] = useState(window.innerWidth);
   const [height, setHeight] = useState(window.innerHeight);
+  const [navState, setNavState] = useState(false);
 
   Helpers.GetWindowSize(setWidth, setHeight);
 
@@ -34,19 +35,20 @@ function App() {
           bodyFooterChildren={pageData.bodyFooter()}
           width={width}
           height={height}
+          navState={navState}
         />
         <Switch>
           <Route exact path={FrontendRoutes.home}>
-            <HomePage pageSetter={setPageData} width={width}/>
+            <HomePage pageSetter={setPageData} width={width} navState={navState} setNavState={setNavState}/>
           </Route>
           <Route path={FrontendRoutes.viewPost + ":id/"}>
-            <ViewPostPage pageSetter={setPageData} width={width}/>
+            <ViewPostPage pageSetter={setPageData} width={width} navState={navState} setNavState={setNavState}/>
           </Route>
           <Route path={FrontendRoutes.createPost}>
-            <CreatePostPage pageSetter={setPageData} width={width}/>
+            <CreatePostPage pageSetter={setPageData} width={width} navState={navState} setNavState={setNavState}/>
           </Route>
           <Route path={FrontendRoutes.updatePost + ":id/"}>
-            <EditPostPage pageSetter={setPageData} width={width}/>
+            <EditPostPage pageSetter={setPageData} width={width} navState={navState} setNavState={setNavState}/>
           </Route>
           <Route>
             <Redirect to={FrontendRoutes.home}/>

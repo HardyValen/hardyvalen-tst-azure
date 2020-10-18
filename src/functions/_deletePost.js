@@ -1,4 +1,3 @@
-import React from 'react';
 const { default: Axios } = require("axios");
 const { default: BackendRoutes } = require("../routes/BackendRoutes");
 
@@ -13,7 +12,7 @@ const DeletePostFunction = async (id) => {
   .catch(
     (err) => {
       console.log(JSON.stringify(err));
-      return false;
+      return err;
     }
   );
 }

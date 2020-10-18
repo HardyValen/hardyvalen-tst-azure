@@ -1,11 +1,12 @@
-import Axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import BodyContentCreate from '../components/__body-content-create';
+import FooterContentCreate from '../components/__footer-content-create';
 import HeaderContentCreate from '../components/__header-content-create';
 import SidebarDefaultDesktop from '../components/__sidebar-default-desktop';
-import BackendRoutes from '../routes/BackendRoutes';
+import SlidebarContentCreate from '../components/__slidebar-content-create';
+import CreatePostFunction from '../functions/_createPost';
 
-const CreatePostPage = ({pageSetter, width}) => {
+const CreatePostPage = ({pageSetter, width, navState, setNavState}) => {
   const [postTitle, setPostTitle] = useState('');
   const [postAuthor, setPostAuthor] = useState('');
   const [postContent, setPostContent] = useState('');
@@ -18,25 +19,28 @@ const CreatePostPage = ({pageSetter, width}) => {
       author: postAuthor,
     }
 
-    Axios.post(
-      BackendRoutes.post.create,
-      data
-    ).then(res => {
-      console.log(JSON.stringify(res))
-    }).catch(error => {
-      console.log(JSON.stringify(error))
-    })
+    CreatePostFunction(data)
+    .then(
+      () => {
+        // To Do
+      }
+    )
+    .catch(
+      () => {
+        // To Do
+      }
+    )
   }
 
   useEffect(() => {
     pageSetter({
       "sidebar": () => {return <SidebarDefaultDesktop/>},
-      "slidingSidebar": () => {return ""},
+      "slidingSidebar": () => {return <SlidebarContentCreate navState={navState} setNavState={setNavState}/>},
       "bodyHeader": () => {return <HeaderContentCreate setPostTitle={setPostTitle} setPostAuthor={setPostAuthor}/>},
       "bodyContent": () => {return <BodyContentCreate setPostContent={setPostContent} publishPostData={publishPostData}/>},
-      "bodyFooter": () => {return "BodyFooter"},
+      "bodyFooter": () => {return <FooterContentCreate navState={navState} setNavState={setNavState} publishPostData={publishPostData}/>},
     });
-  }, [width, postTitle, postAuthor, postContent])
+  }, [width, postTitle, postAuthor, postContent, navState])
   
   return null;
 }

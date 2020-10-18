@@ -12,7 +12,7 @@ const Layout = (props) => {
     <Fragment>
       {
         props.width <= Helper.Breakpoints.md 
-        ? <SlidingSidebar>
+        ? <SlidingSidebar navState={props.navState}>
             {props.slidingSidebarChildren}
           </SlidingSidebar> 
         : null

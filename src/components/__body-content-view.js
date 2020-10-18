@@ -13,7 +13,7 @@ const BodyContentView = ({data}) => {
           {postBody}
         </p>
       </div>
-      <div className="col-4 p-3 bodyActionsViewable">
+      <div className="col-4 p-3 bodyActionsViewable medium-only">
         <div className="mb-5">
           <h3 className="mb-2">Actions</h3>
           <Link to={FrontendRoutes.home}>

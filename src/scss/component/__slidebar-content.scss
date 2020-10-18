@@ -1,0 +1,40 @@
+.slidebarContent {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: space-between;
+
+  width: 100%;
+  height: 100%;
+
+  .slidebarHeader {
+    display: flex;
+    justify-content: flex-end;
+
+    .headerIcon {
+      @include fluid(width, 4.6rem);
+      @include fluid(height, 4.6rem);
+      @include box-shadow("button");
+      border-radius: 50%;
+      background-color: #fbfbfb;
+      color: map-get($color, "primary");
+      transition: $defaultTransition;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+
+  .slidebarBody {
+    img {
+      width: 100%;
+      @include fluid(max-width, 24rem, 36rem)
+    }
+  }
+  
+  a {
+    color: map-get($color, "white");
+    text-decoration: none;
+  }
+}

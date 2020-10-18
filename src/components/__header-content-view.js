@@ -8,7 +8,7 @@ const HeaderContentView = ({data}) => {
     <div className="headerContent">
       <h1 className="mb-2">{postTitle}</h1>
       <p className="font annotation color gray-2">Author: {postAuthor}</p>
-      <p className="font annotation color gray-2">Posted {moment(postDate).fromNow()}</p>
+      <p className="font annotation color gray-2">Updated {moment(postDate).fromNow()}</p>
     </div>
   )
 }
