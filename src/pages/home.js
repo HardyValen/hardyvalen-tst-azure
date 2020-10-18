@@ -17,7 +17,7 @@ const HomePage = ({pageSetter, width}) => {
   const [refreshFlag, setRefreshFlag] = useState(true);
 
   const PageBody = () => {
-    let filteredPosts = posts.filter(
+    let filteredPosts = posts?.filter(
       (data) => {
         return data?.post_title?.toUpperCase().indexOf(searchString?.toUpperCase()) > -1 || data?.post_author?.toUpperCase().indexOf(searchString?.toUpperCase()) > -1
       }

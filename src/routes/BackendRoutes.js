@@ -1,5 +1,5 @@
-const url = "http://localhost:9000/"
-// const url = "http://hardyvalen-backend.azurewebsites.net/";
+// const url = "http://localhost:9000/"
+const url = "http://hardyvalen-backend.azurewebsites.net/";
 
 const BackendRoutes = {};
 
