@@ -1,0 +1,11 @@
+.slidingSidebarComponent {
+  position: fixed;
+  z-index: 2000;
+  left: -100vw;
+  
+  background-color: map-get($color, "primary");
+  width: 100vw;
+  height: 100vh;
+  
+  @include boxsizing(map-get($bs, "5"));
+}

@@ -1,0 +1,19 @@
+.bodyContentViewable {
+  overflow-y: auto;
+}
+
+.bodyActionsViewable {
+  a {
+    color: initial;
+    text-decoration: none;
+  }
+
+  button, .button {
+    @include typography($font-size-base);
+    font-family: $font-type-base;
+    border: none;
+    outline: none;
+    font-weight: bold;
+    cursor: pointer;
+  }
+}

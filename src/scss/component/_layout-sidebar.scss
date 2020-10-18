@@ -1,0 +1,12 @@
+.sidebarComponent {
+  @include fluid("max-width", 24rem, 36rem);
+  @include boxsizing(map-get($bs, "5"));
+
+  background-color: map-get($color, "primary");
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+
+  
+  color: map-get($color, "white"); 
+}

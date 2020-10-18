@@ -1,0 +1,30 @@
+.headerContent {
+  .input-post-search {
+    @include boxsizing-x(map-get($bs, "3"));
+    @include boxsizing-y(map-get($bs, "2"));
+    @include typography($font-size-sm);
+    @include fluid(width, 30rem);
+  }
+
+  .input-post-title {
+    @include typography($font-size-h1);
+    font-family: $font-type-title;
+    border: none;
+    outline: none;
+    width: 100%;
+  }
+
+  .input-post-author {
+    @include typography($font-size-sm);
+    font-family: $font-type-base;
+    border: none;
+    outline: none;
+    width: 100%;
+  }
+
+  .headerOptions {
+    .input-post-search {
+      @include fluid(margin-right, 1rem, 1.75rem);
+    }
+  }
+}

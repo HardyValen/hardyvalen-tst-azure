@@ -12,3 +12,13 @@
   transition: $defaultTransition;
   text-decoration: none;
 }
+
+.button-transparent {
+  @include button();
+  border: none;
+
+  cursor: pointer;
+  display: inline-block;
+  transition: $defaultTransition;
+  text-decoration: none;
+}

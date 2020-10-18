@@ -1,62 +1,58 @@
-import Axios from 'axios';
-import React, { useEffect, useState } from 'react';
-
-// import logo from './logo.svg';
-// import './App.css';
+// import Axios from 'axios';
+import React, { useState } from 'react';
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
+import Layout from './components/_layout';
+import CreatePostPage from './pages/create-post';
+import EditPostPage from './pages/edit-post';
+import HomePage from './pages/home';
+import ViewPostPage from './pages/view-post';
+import FrontendRoutes from './routes/FrontendRoutes';
+import * as Helpers from './functions/functions-common';
 
 function App() {
-  // const [data, setData] = useState([{}]);
-  const [data, setData] = useState([{
-    "post-id": 1,
-    "post-title": "Titleee",
-    "post-author": "Authorrr",
-    "post-body": "Bodyyy",
-    "post-created-at": Date.now()
-  }]);
-  
-  useEffect(() => {
-    Axios
-      .get(
-        "https://hardyvalen-backend.azurewebsites.net/post/get-all", 
-      )
-      .then(res => {
-        setData(res.data);
-        return null;
-      })
-      .catch((e) => {
-        console.log(JSON.stringify(e, null, 4));
-      })
-  }, []);
+  const [pageData, setPageData] = useState({
+    "sidebar": () => {return "Sidebar"},
+    "slidingSidebar": () => {return "SlidingSidebar"},
+    "bodyHeader": () => {return "BodyHeader"},
+    "bodyContent": () => {return "BodyContent"},
+    "bodyFooter": () => {return "BodyFooter"},
+  })
+
+  const [width, setWidth] = useState(window.innerWidth);
+  const [height, setHeight] = useState(window.innerHeight);
+
+  Helpers.GetWindowSize(setWidth, setHeight);
 
   return (
-    <div className="App">
-      Get data from Azure Database
-      <table>
-        <thead>
-          <tr>
-            <td>ID</td>
-            <td>Title</td>
-            <td>Author</td>
-            <td>Body</td>
-            <td>Created At</td>
-          </tr>
-        </thead>
-        <tbody>
-        {
-          data.map((data, key) => {
-            return (
-              <tr key={key}>
-                <td>{data["post-id"]}</td>
-                <td>{data["post-title"]}</td>
-                <td>{data["post-author"]}</td>
-                <td>{data["post-body"]}</td>
-                <td>{data["post-created-at"]}</td>
-              </tr>
-            )
-          }
-        )}
-        </tbody>
-      </table>
+    <div>
+      <BrowserRouter>
+        <Layout
+          sidebarChildren={pageData.sidebar()}
+          slidingSidebarChildren={pageData.slidingSidebar()}
+          bodyHeaderChildren={pageData.bodyHeader()}
+          bodyContentChildren={pageData.bodyContent()}
+          bodyFooterChildren={pageData.bodyFooter()}
+          width={width}
+          height={height}
+        />
+        <Switch>
+          <Route exact path={FrontendRoutes.home}>
+            <HomePage pageSetter={setPageData} width={width}/>
+          </Route>
+          <Route path={FrontendRoutes.viewPost + ":id/"}>
+            <ViewPostPage pageSetter={setPageData} width={width}/>
+          </Route>
+          <Route path={FrontendRoutes.createPost}>
+            <CreatePostPage pageSetter={setPageData} width={width}/>
+          </Route>
+          <Route path={FrontendRoutes.updatePost + ":id/"}>
+            <EditPostPage pageSetter={setPageData} width={width}/>
+          </Route>
+          <Route>
+            <Redirect to={FrontendRoutes.home}/>
+          </Route>
+        </Switch>
+      </BrowserRouter>
     </div>
   );
 }

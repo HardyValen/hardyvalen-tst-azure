@@ -1,0 +1,8 @@
+.bodyContentComponent {
+  width: 100%;
+  @include boxsizing-x(map-get($bs, "5"));
+  @include boxsizing-top(map-get($bs, "5"));
+  @include fluid("padding-bottom", 8rem);
+
+  overflow: auto;
+}

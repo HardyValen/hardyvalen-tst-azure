@@ -1,0 +1,15 @@
+.headerComponent {
+  position: relative;
+  z-index: 100;
+  
+  width: 100%;
+  @include boxsizing-x(map-get($bs, "5"));
+  @include boxsizing-y(map-get($bs, "6"));
+
+  @include box-shadow();
+
+  a {
+    color: map-get($color, "primary");
+    text-decoration: none;
+  }
+}

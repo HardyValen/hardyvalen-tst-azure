@@ -12,3 +12,18 @@
 @import "./global-classes/layout";
 @import "./global-classes/separator";
 @import "./global-classes/button";
+
+@import "./component/layout";
+@import "./component/layout-sidebar";
+@import "./component/layout-body";
+@import "./component/layout-body-header";
+@import "./component/layout-body-content";
+@import "./component/layout-body-footer";
+@import "./component/layout-sliding-sidebar";
+
+@import "./component/_sidebar-default-desktop";
+@import "./component/_header-content";
+@import "./component/_posts-feed-container";
+@import "./component/_body-editable";
+@import "./component/_body-viewable";
+

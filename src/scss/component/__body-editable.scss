@@ -1,0 +1,28 @@
+.bodyContentEditable {
+  overflow-y: auto;
+
+  textarea {
+    @include typography($font-size-base);
+    font-family: $font-type-base;
+    outline: none;
+    border: none;
+    width: 100%;
+    resize: none;
+  }
+}
+
+.bodyActionsEditable {
+  a {
+    color: initial;
+    text-decoration: none;
+  }
+
+  button {
+    @include typography($font-size-base);
+    font-family: $font-type-base;
+    border: none;
+    outline: none;
+    font-weight: bold;
+    cursor: pointer;
+  }
+}

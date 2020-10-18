@@ -1,0 +1,12 @@
+.footerComponent {
+  @include fluid("max-height", 8rem);
+  @include boxsizing(map-get($bs, "5"));
+  @include box-shadow("top");
+
+  position: fixed;
+  z-index: 2000;
+  bottom: 0;
+  width: 100vw;
+  
+  background-color: map-get($color, "white");
+}

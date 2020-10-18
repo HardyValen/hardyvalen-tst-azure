@@ -1,0 +1,16 @@
+.sidebarDefaultDesktop {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+
+  text-align: center;
+
+  img {
+    width: 100%;
+    @include fluid(max-width, 16rem);
+  }
+}

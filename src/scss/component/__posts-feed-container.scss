@@ -1,0 +1,40 @@
+.postsFeedContainer {
+  position: relative;
+  z-index: 0;
+
+  .postFeed {
+    @include box-shadow();
+    background-color: map-get($color, "white");
+    transition: $defaultTransition;
+    
+    a {
+      text-decoration: none !important;
+      color: initial;
+    }
+
+    .postFeedBody {
+      @include fluid(max-height, 24rem);
+      @include boxsizing(map-get($bs, "5"));
+      transition: $defaultTransition;
+      overflow-y: hidden;
+
+      &:hover {
+        background-color: map-get($color, "primary-light");
+      }
+    }
+
+    .postFeedFooter {
+      @include boxsizing(map-get($bs, "5"));
+      @include fluid(min-height, 2rem);
+      text-align: right;
+
+      .icons {
+        color: map-get($color, "primary");
+
+        &:hover {
+          color: map-get($color, "primary-2");
+        }
+      }
+    }
+  }
+}
