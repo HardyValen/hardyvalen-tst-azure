@@ -3,10 +3,10 @@ const { default: BackendRoutes } = require("../routes/BackendRoutes");
 const { toast } = require('react-toastify');
 
 const GetAllPostFunction = async () => {
-  // toast.info("Please wait while we're getting posts from the server..");
+  toast.info("Please wait while we're getting posts from the server..");
   return await Axios.get( BackendRoutes.post.getAll )
     .then(res => {
-      // toast.success("All posts were fetched successfully!")
+      toast.success("All posts were fetched successfully!")
       return res.data;
     })
     .catch((e) => {

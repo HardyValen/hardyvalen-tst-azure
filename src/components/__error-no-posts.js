@@ -5,7 +5,7 @@ const ErrorNoPosts = () => {
   return (
     <div className="errorNoPosts">
       <img src={NoPostAsset} alt="" className="my-5"/>
-      <p className="error-text">No post (yet)</p>
+      <p className="error-text">No post found.</p>
     </div>
   )
 }
