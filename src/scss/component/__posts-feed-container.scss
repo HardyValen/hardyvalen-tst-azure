@@ -1,6 +1,7 @@
 .postsFeedContainer {
   position: relative;
   z-index: 0;
+  width: inherit;
 
   .postFeed {
     @include box-shadow();
@@ -14,12 +15,18 @@
 
     .postFeedBody {
       @include fluid(max-height, 24rem);
+      width: 100%;
       @include boxsizing(map-get($bs, "5"));
       transition: $defaultTransition;
-      overflow-y: hidden;
+      overflow: hidden;
+      word-wrap: break-word;
 
       &:hover {
         background-color: map-get($color, "primary-light");
+      }
+
+      .postBodyContent {
+        @include fluid(max-width, 24rem);
       }
     }
 

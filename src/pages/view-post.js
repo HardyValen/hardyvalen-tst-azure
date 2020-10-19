@@ -9,7 +9,7 @@ import GetPostByIDFunction from '../functions/_getPostByID';
 
 const ViewPostPage = ({pageSetter, width, navState, setNavState}) => {
   let {id} = useParams();
-  const [postID, setPostID] = useState(id);
+  const [postID, setPostID] = useState(useParams().id);
   const [postTitle, setPostTitle] = useState("Waiting for Data");
   const [postAuthor, setPostAuthor] = useState("-");
   const [postBody, setPostBody] = useState("-");

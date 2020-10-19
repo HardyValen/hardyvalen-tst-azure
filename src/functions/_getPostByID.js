@@ -1,6 +1,6 @@
 const { default: Axios } = require("axios");
 const { default: BackendRoutes } = require("../routes/BackendRoutes");
-const { toast } = require('react-toastify');
+// const { toast } = require('react-toastify');
 
 const GetPostByIDFunction = async (id) => {
   return await Axios.get(BackendRoutes.post.getByID + id)

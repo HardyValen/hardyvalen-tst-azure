@@ -1,11 +1,11 @@
-.errorNoPosts {
+.errorBodyContent {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   width: 100%;
 
-  img {
+  img, .img-container {
     @include fluid(max-width, 20rem, 32rem);
   }
 

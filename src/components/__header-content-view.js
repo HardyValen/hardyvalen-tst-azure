@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import moment from 'moment';
 
 const HeaderContentView = ({data}) => {
-  const {postTitle, postAuthor, postDate, postID} = data;
+  const {postTitle, postAuthor, postDate} = data;
 
   return (
     <div className="headerContent">

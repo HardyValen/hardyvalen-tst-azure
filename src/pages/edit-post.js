@@ -15,7 +15,7 @@ const EditPostPage = ({pageSetter, navState, setNavState}) => {
   const [postTitle, setPostTitle] = useState('');
   const [postAuthor, setPostAuthor] = useState('');
   const [postBody, setPostBody] = useState('');
-  const [postDate, setPostDate] = useState('');
+  // const [postDate, setPostDate] = useState('');
   const [lock, setLock] = useState(false);
   const [jobFinished, setJobFinished] = useState(false);
 
@@ -45,13 +45,13 @@ const EditPostPage = ({pageSetter, navState, setNavState}) => {
     GetPostByIDFunction(id)
       .then(
         (data) => {
-          let {post_id, post_title, post_body, post_author, post_created_at} = data;
+          let {post_id, post_title, post_body, post_author /*, post_created_at*/} = data;
 
           setPostID(post_id);
           setPostTitle(post_title);
           setPostAuthor(post_author);
           setPostBody(post_body);
-          setPostDate(post_created_at);
+          // setPostDate(post_created_at);
 
           setLock(false);
         }
